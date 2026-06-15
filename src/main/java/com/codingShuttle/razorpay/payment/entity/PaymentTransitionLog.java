@@ -4,6 +4,7 @@ import com.codingShuttle.razorpay.common.enums.PaymentActor;
 import com.codingShuttle.razorpay.common.enums.PaymentEvent;
 import com.codingShuttle.razorpay.common.enums.PaymentStatus;
 import jakarta.persistence.*;
+import lombok.*;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
@@ -12,6 +13,11 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "payment_transition_log")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class PaymentTransitionLog {
 
     @Id
