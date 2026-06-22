@@ -1,5 +1,6 @@
 package com.codingShuttle.razorpay.operations.entity;
 
+import com.codingShuttle.razorpay.common.entity.BaseEntity;
 import com.codingShuttle.razorpay.common.entity.Money;
 import com.codingShuttle.razorpay.common.enums.SettlementStatus;
 import jakarta.persistence.*;
@@ -9,7 +10,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "settlement")
-public class Settlement {
+public class Settlement extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
