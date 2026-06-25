@@ -1,0 +1,11 @@
+package com.codingShuttle.razorpay.payment.service;
+
+import com.codingShuttle.razorpay.payment.dto.request.PaymentInitRequest;
+import com.codingShuttle.razorpay.payment.dto.response.PaymentResponse;
+
+import java.util.UUID;
+
+public interface PaymentService {
+
+    PaymentResponse initiate(UUID merchantId, PaymentInitRequest request);
+}
