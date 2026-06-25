@@ -1,0 +1,11 @@
+package com.codingShuttle.razorpay.payment.processor.dto;
+
+public sealed interface PaymentProcessorResponse permits PaymentProcessorResponse.Pending,
+        PaymentProcessorResponse.Success, PaymentProcessorResponse.Failure {
+
+    record Pending(String processorReference) implements PaymentProcessorResponse{}
+
+    record Success(String processorReference, String BankReference) implements PaymentProcessorResponse {}
+
+    record Failure(String errorCode, String errorDescription) implements PaymentProcessorResponse {}
+}
