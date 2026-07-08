@@ -42,7 +42,7 @@ public class UpiPaymentAdapter implements PaymentAdapter {
                     new PaymentResult.Pending(pending.processorReference());
 
                 case PaymentProcessorResponse.Success success ->
-                    new PaymentResult.Success(success.BankReference());
+                    new PaymentResult.Success(success.bankReference());
             };
         } catch (Exception e){
             log.warn("UPI failed, payment id: {}", request.paymentId());
