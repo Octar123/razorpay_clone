@@ -1,28 +1,30 @@
-package com.codingShuttle.razorpay.payment.processor.stratergy;
+package com.codingShuttle.razorpay.payment.processor.strategy;
 
 import com.codingShuttle.razorpay.common.util.RandomizerUtil;
 import com.codingShuttle.razorpay.payment.processor.PaymentProcessor;
 import com.codingShuttle.razorpay.payment.processor.dto.PaymentProcessorRequest;
 import com.codingShuttle.razorpay.payment.processor.dto.PaymentProcessorResponse;
+import org.springframework.stereotype.Component;
 
-public class UpiPaymentProcessor implements PaymentProcessor {
+@Component
+public class NetBankingPaymentProcessor implements PaymentProcessor {
     @Override
     public PaymentProcessorResponse charge(PaymentProcessorRequest request) {
 
-        final String VPA_CODE_FAIL = "fail@okaxis";
+        final String BANK_CODE_FAIL = "BANK_CODE_FAIL";
 
         String bankCode = request.methodDetails() != null
-                ? request.methodDetails().get("vpa").toString()
+                ? request.methodDetails().get("bank").toString()
                 : null;
 
-        if(VPA_CODE_FAIL.equals(bankCode)){
+        if(BANK_CODE_FAIL.equals(bankCode)){
             return new PaymentProcessorResponse.Failure("BANK_REJECTED",
                     "Bank rejected the transaction registration.");
         }
 
-        String processorRef = "UPI_PROCESSOR_" + RandomizerUtil.randomBase64(16);
+        String processorRef = "NBK_PROCESSOR_" + RandomizerUtil.randomBase64(16);
 
-//        String bankRef = "BANK_REF" + RandomizerUtil.randomBase64(16);
+//        String redirectRef = "http://REDIRECT_BANK.com/"+processorRef;
 
         return new PaymentProcessorResponse.Pending(processorRef);
     }

@@ -1,27 +1,30 @@
 package com.codingShuttle.razorpay.payment.config;
 
 import com.codingShuttle.razorpay.common.enums.PaymentMethod;
-import com.codingShuttle.razorpay.payment.gateway.adapter.CardPaymentAdapter;
-import com.codingShuttle.razorpay.payment.gateway.adapter.NetBankingAdapter;
-import com.codingShuttle.razorpay.payment.gateway.adapter.UpiPaymentAdapter;
 import com.codingShuttle.razorpay.payment.processor.PaymentProcessor;
-import com.codingShuttle.razorpay.payment.processor.stratergy.CardPaymentProcessor;
-import com.codingShuttle.razorpay.payment.processor.stratergy.NetBankingPaymentProcessor;
-import com.codingShuttle.razorpay.payment.processor.stratergy.UpiPaymentProcessor;
+import com.codingShuttle.razorpay.payment.processor.strategy.CardPaymentProcessor;
+import com.codingShuttle.razorpay.payment.processor.strategy.NetBankingPaymentProcessor;
+import com.codingShuttle.razorpay.payment.processor.strategy.UpiPaymentProcessor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Map;
 
 @Configuration
+@RequiredArgsConstructor
 public class PaymentProcessorConfig {
+
+    private final CardPaymentProcessor cardPaymentProcessor;
+    private final NetBankingPaymentProcessor netBankingPaymentProcessor;
+    private final UpiPaymentProcessor upiPaymentProcessor;
 
     @Bean
     public Map<PaymentMethod, PaymentProcessor> paymentMethodPaymentProcessorMap(){
         return Map.of(
-                PaymentMethod.CARD, new CardPaymentProcessor(),
-                PaymentMethod.NETBANKING, new NetBankingPaymentProcessor(),
-                PaymentMethod.UPI, new UpiPaymentProcessor()
+                PaymentMethod.CARD, cardPaymentProcessor,
+                PaymentMethod.NETBANKING, netBankingPaymentProcessor,
+                PaymentMethod.UPI, upiPaymentProcessor
         );
     }
 }

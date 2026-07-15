@@ -1,4 +1,4 @@
-package com.codingShuttle.razorpay.payment.processor.stratergy;
+package com.codingShuttle.razorpay.payment.processor.strategy;
 
 import com.codingShuttle.razorpay.common.util.RandomizerUtil;
 import com.codingShuttle.razorpay.payment.processor.PaymentProcessor;
