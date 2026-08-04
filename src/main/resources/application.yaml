@@ -72,7 +72,11 @@ app:
         requests-per-minute: 2
   kafka:
     topics:
-      payment: payments.events
-      order: orders.events
-      refund: refund.events
-      settlement: settlement.events
+      payments: payments.events
+      orders: orders.events
+      refunds: refunds.events
+      settlements: settlements.events
+  webhook:
+    delivery:
+      redis-key: "webhook-retry"
+      poll-batch-size: 100
