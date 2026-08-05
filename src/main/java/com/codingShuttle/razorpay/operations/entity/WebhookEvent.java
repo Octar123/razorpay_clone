@@ -17,7 +17,6 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @RequiredArgsConstructor
 public class WebhookEvent extends BaseEntity {
 
@@ -46,6 +45,7 @@ public class WebhookEvent extends BaseEntity {
     private WebhookEventStatus status;
 
     @Column(nullable = false)
+    @Builder.Default
     private Integer attempts = 0;
 
 
